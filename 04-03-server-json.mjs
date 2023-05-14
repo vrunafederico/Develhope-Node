@@ -1,16 +1,15 @@
 import { createServer } from "node:http";
-import { sum } from "./calc.mjs";
 
 const server = createServer((request, response) => {
   console.log("request received");
 
   response.statusCode = 200;
 
-  response.setHeader("Content-Type", "text/html");
+  response.setHeader("Content-Type", "application/json");
 
-  response.end(
-    ` <html><body><h1>Hello Word</h1><span>SUM: ${sum(4,6)}<span></body></html> ` 
-  );
+  const jsonResponseBody = JSON.stringify({ location: "Mars" });
+
+  response.end(jsonResponseBody);
 });
 
 server.listen(3000, () => {
