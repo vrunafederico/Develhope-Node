@@ -12,8 +12,27 @@ function luckyDraw(player) {
   });
 }
 
+const agetResults = async() =>{
+  try {
+    const data = await luckyDraw("Tina")
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+  }
 
-luckyDraw("Joe").then(res => console.log(res) , error => console.log(error))
-luckyDraw("Caroline").then(res => console.log(res) , error => console.log(error))
-luckyDraw("Dabrina").then(res => console.log(res) , error => console.log(error))
+  try {
+    const data = await luckyDraw("jorge")
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+  }
 
+  try {
+    const data = await luckyDraw("Julien")
+    console.log(data)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+agetResults()
