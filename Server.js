@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Joi = require('joi');
 var express = require('express');
 var app = express();
-var _a = require("./controllers/planets.ts"), getAll = _a.getAll, getOneByID = _a.getOneByID, create = _a.create, updateByid = _a.updateByid, deleteByid = _a.deleteByid;
+var _a = require("./controllers/planets.ts"), getAll = _a.getAll, getOneByID = _a.getOneByID, create = _a.create, updateByid = _a.updateByid, deleteByid = _a.deleteByid, createTable = _a.createTable;
 require('dotenv').config();
 app.use(express.json());
 app.get("/api/planets", getAll);

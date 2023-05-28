@@ -3,7 +3,7 @@ import { array } from "joi";
 const Joi = require('joi')
 const express = require('express')
 const app = express()
-const {getAll, getOneByID,create,updateByid,deleteByid } = require("./controllers/planets.ts")
+const {getAll, getOneByID,create,updateByid,deleteByid,createTable } = require("./controllers/planets.ts")
 
 require('dotenv').config()
 
