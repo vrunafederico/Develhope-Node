@@ -49,7 +49,7 @@ var db = pgPromise()({
 var createTable = function () { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, db.none("\n    DROP TABLE IF EXISTS planets;\n\n    CREATE TABLE planets(\n      id SERIAL NOT NULL PRIMARY KEY,\n      name TEXT NOT NULL\n    );\n    \n    INSERT INTO planets (name) VALUES ('Earth');\n    INSERT INTO planets (name) VALUES ('Mars');\n    ")];
+            case 0: return [4 /*yield*/, db.none("\n    DROP TABLE IF EXISTS planets;\n\n    CREATE TABLE planets(\n      id SERIAL NOT NULL PRIMARY KEY,\n      name TEXT NOT NULL,\n      image Text\n    );\n    \n    INSERT INTO planets (name) VALUES ('Earth');\n    INSERT INTO planets (name) VALUES ('Mars');\n    ")];
             case 1:
                 _a.sent();
                 return [2 /*return*/];
@@ -138,11 +138,22 @@ var deleteByid = function (req, res) { return __awaiter(_this, void 0, void 0, f
         }
     });
 }); };
+var insertImage = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, db.none("UPDATE planets SET image=$2 WHERE id=$1;", [req.params.id, req.file.filename])];
+            case 1:
+                _a.sent();
+                res.status(200).json({ msg: "Done" });
+                return [2 /*return*/];
+        }
+    });
+}); };
 module.exports = {
     getAll: getAll,
     getOneByID: getOneByID,
     create: create,
     updateByid: updateByid,
     deleteByid: deleteByid,
-    createTable: createTable
+    insertImage: insertImage
 };

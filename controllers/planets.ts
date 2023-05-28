@@ -21,7 +21,8 @@ const createTable = async ()=>{
 
     CREATE TABLE planets(
       id SERIAL NOT NULL PRIMARY KEY,
-      name TEXT NOT NULL
+      name TEXT NOT NULL,
+      image Text
     );
     
     INSERT INTO planets (name) VALUES ('Earth');
@@ -91,11 +92,17 @@ const deleteByid = async (req, res) => {
     res.status(200).json({msg: "Done"})
 }
 
+const insertImage = async (req, res) => {
+
+    await db.none(`UPDATE planets SET image=$2 WHERE id=$1;`, [req.params.id, req.file.filename])
+    res.status(200).json({msg: "Done"})
+}
+
 module.exports={
     getAll,
     getOneByID,
     create,
     updateByid,
     deleteByid,
-    createTable    
+    insertImage    
 }
