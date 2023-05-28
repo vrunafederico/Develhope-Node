@@ -44,7 +44,7 @@ var db = pgPromise()({
     port: 5432,
     database: 'postgres',
     user: 'postgres',
-    password: 'aS2MKXpy3k'
+    password: ''
 });
 var createTable = function () { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
