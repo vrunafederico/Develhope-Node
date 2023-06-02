@@ -14,17 +14,6 @@ const storage = multer.diskStorage({
   }
 })
 
-
-const pgPromise = require("pg-promise")
-
-const db = pgPromise()({
-    host:'127.0.0.1',
-    port: 5432,
-    database: 'postgres',
-    user: 'postgres',
-    password: 'aS2MKXpy3k'
-  })
-
 require('dotenv').config()
 
 app.use(express.json());
@@ -32,7 +21,3 @@ app.use(express.json());
 app.listen(process.env.port, () => {
   console.log(`Example app listening on port ${process.env.port}`)
 })
-
-module.exports= {
-  db
-}

@@ -8,11 +8,11 @@ const {db} = require("./Server.js")
 
 
 passport.use(new passportJWT.Strategy({
-        secreatOrKey: process.env.SECRET,
+        secretOrKey: process.env.SECRET,
         jwtFromRequest: passportJWT.ExtractJwt.fromAuthHeaderAsBearerToken()
     },
     async (payload, done) =>{
-        const user = await db.one(`SELECT * FROM user WHERE id=$1`, payload.id)
+        const user = await db.one(`SELECT * FROM users WHERE id=$1`, payload.id)
         console.log(user)
 
         try {

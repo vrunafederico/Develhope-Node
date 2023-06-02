@@ -1,5 +1,14 @@
 
-const {db} = require("./Server.js")
+const pgPromise = require("pg-promise")
+
+const db = pgPromise()({
+    host:'127.0.0.1',
+    port: 5432,
+    database: 'postgres',
+    user: 'postgres',
+    password: ''
+  })
+
 
 const createTable = async ()=>{
   await db.none(`
@@ -12,9 +21,12 @@ const createTable = async ()=>{
         token TEXT
     );
     `)
-
-
     
 }
 
 createTable()
+
+
+module.exports={
+    db
+}

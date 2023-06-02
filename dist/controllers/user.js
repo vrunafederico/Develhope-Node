@@ -7,7 +7,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const { db } = require("./Server.js");
+const pgPromise = require("pg-promise");
+const db = pgPromise()({
+    host: '127.0.0.1',
+    port: 5432,
+    database: 'postgres',
+    user: 'postgres',
+    password: 'aS2MKXpy3k'
+});
 const createTable = () => __awaiter(this, void 0, void 0, function* () {
     yield db.none(`
     DROP TABLE IF EXISTS users;
@@ -21,3 +28,6 @@ const createTable = () => __awaiter(this, void 0, void 0, function* () {
     `);
 });
 createTable();
+module.exports = {
+    db
+};

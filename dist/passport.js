@@ -14,10 +14,10 @@ const passport = require("passport");
 const passportJWT = require("passport-jwt");
 const { db } = require("./Server.js");
 passport.use(new passportJWT.Strategy({
-    secreatOrKey: process.env.SECRET,
+    secretOrKey: process.env.SECRET,
     jwtFromRequest: passportJWT.ExtractJwt.fromAuthHeaderAsBearerToken()
 }, (payload, done) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield db.one(`SELECT * FROM user WHERE id=$1`, payload.id);
+    const user = yield db.one(`SELECT * FROM users WHERE id=$1`, payload.id);
     console.log(user);
     try {
         return user ? done(null, user) : done(new Error("User not found"));
