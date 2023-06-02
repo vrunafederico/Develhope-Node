@@ -14,28 +14,25 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({ storage: storage })
 
-const {getAll, getOneByID,create,updateByid,deleteByid, insertImage } = require("./controllers/planets.ts")
+const pgPromise = require("pg-promise")
+
+const db = pgPromise()({
+    host:'127.0.0.1',
+    port: 5432,
+    database: 'postgres',
+    user: 'postgres',
+    password: 'aS2MKXpy3k'
+  })
 
 require('dotenv').config()
 
 app.use(express.json());
 
-app.use('/static', express.static('uploads'));
-
-app.get("/api/planets", getAll)
-
-app.get("/api/planets/:id", getOneByID)
-
-app.post("/api/planets", create)
-
-app.post("/api/:id/image", upload.single('image'), insertImage )
-
-app.put("/api/planets/:id", updateByid)
-
-app.delete("/api/planets/:id", deleteByid)
-
 app.listen(process.env.port, () => {
   console.log(`Example app listening on port ${process.env.port}`)
 })
+
+module.exports= {
+  db
+}
