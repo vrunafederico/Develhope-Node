@@ -92,8 +92,16 @@ const login = async (req, res) =>{
     }
 }
 
+
+const logout = async (req,res) =>{
+    const user = req.user
+    const update = await db.one(`UPDATE users SET token=$2 WHERE id=$1 RETURNING *`, [user.id, null])
+    res.status(200).json({msg: "logout"})
+}
+
 module.exports = {
     db,
     signup,
-    login
+    login,
+    logout
 }

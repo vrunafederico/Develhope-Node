@@ -85,8 +85,14 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(400).json({ msg: "User not found" });
     }
 });
+const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = req.user;
+    const update = yield db.one(`UPDATE users SET token=$2 WHERE id=$1 RETURNING *`, [user.id, null]);
+    res.status(200).json({ msg: "logout" });
+});
 module.exports = {
     db,
     signup,
-    login
+    login,
+    logout
 };
