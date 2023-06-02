@@ -10,7 +10,7 @@ const db = pgPromise()({
   port: 5432,
   database: 'postgres',
   user: 'postgres',
-  password: 'aS2MKXpy3k'
+  password: ''
 })
 
 
